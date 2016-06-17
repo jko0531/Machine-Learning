@@ -50,7 +50,7 @@ class CanvasEvents:
 		global global_matrix
 		#self.canvas.postscript(file='test.ps', colormode='color')
 		size = 30, 30
-		filename = 'testdraw.png'
+		filename = 'data/testdraw.png'
 		self.image1.thumbnail(size, Image.ANTIALIAS)
 		self.image1.save(filename)
 
@@ -122,8 +122,8 @@ def train(correct_number, final, X, y):
 	X = np.concatenate((X, final), axis=0)
 	y = np.append(y, correct_number)
 
-	np.savetxt('self_training_X.csv', X, delimiter=',')
-	np.savetxt('self_training_y.csv', y, delimiter=',')
+	np.savetxt('data/self_training_X.csv', X, delimiter=',')
+	np.savetxt('data/self_training_y.csv', y, delimiter=',')
 	printShape(0, final, [correct_number])
 
 
@@ -133,7 +133,7 @@ def Main():
 	#	print(i+1,"iteration")
 	CanvasEvents()
 	tk.mainloop()
-	temp = np.array(Image.open('testdraw.png'))
+	temp = np.array(Image.open('data/testdraw.png'))
 	final = np.zeros(shape=(30,30))
 	for i in range(30):
 		for j in range(30):
@@ -149,8 +149,8 @@ def Main():
 	X_train, y_train = parseData('training', directory)
 
 	#np.savetxt('self_training.csv', global_matrix, delimiter=',')
-	X = np.genfromtxt('self_training_X.csv', delimiter=',')
-	y = np.genfromtxt('self_training_y.csv', delimiter=',')
+	X = np.genfromtxt('data/self_training_X.csv', delimiter=',')
+	y = np.genfromtxt('data/self_training_y.csv', delimiter=',')
 
 	#np.savetxt('self_training_y.csv', y, delimiter=',')
 	predict_number = OneVsRestClassifier(LinearSVC(random_state=0)).fit(X,y).predict(final)
