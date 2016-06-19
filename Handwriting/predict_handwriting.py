@@ -1,7 +1,7 @@
 from __future__ import print_function # this is for python 2.6 <-> 3.x compatibility
 import os, struct
 import numpy as np
-import Tkinter as tk
+import tkinter as tk
 import matplotlib
 from PIL import Image, ImageDraw
 from sklearn.multiclass import OneVsRestClassifier
@@ -82,7 +82,7 @@ def parseData(dataset='testing', path='.'):
 		image_file = os.path.join(path, 't10k-images-idx3-ubyte')
 		label_file = os.path.join(path, 't10k-labels-idx1-ubyte')
 	else:
-		raise ValueError, "'dataset' must be in testing or 'training'"
+		raise(ValueError, "'dataset' must be in testing or 'training'")
 
 	# get the matrix for image data
 	f_img = open(image_file, 'rb')
@@ -155,11 +155,11 @@ def Main():
 	#np.savetxt('self_training_y.csv', y, delimiter=',')
 	predict_number = OneVsRestClassifier(LinearSVC(random_state=0)).fit(X,y).predict(final)
 	print("You drew the number:", int(predict_number[0]))
-	response = raw_input("Was I right? (y/n): ")
+	response = input("Was I right? (y/n): ")
 	if response == "y" or response == 'yes':
 		print("yayyy")
 	elif response == 'n' or response == 'no':
-		correct_number = raw_input("terribly sorry. What was the correct number?: ")
+		correct_number = input("terribly sorry. What was the correct number?: ")
 		train(int(correct_number), final, X, y)
 		print("Thanks! We will try to get the correct answer next time :)")
 
