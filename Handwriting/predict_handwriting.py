@@ -10,8 +10,8 @@ from sklearn.metrics import accuracy_score
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning) 
 
-version = sys.version_info
-if (version > (3,0)):
+version = sys.version_info[0]
+if version >= 3:
 	import tkinter as tk
 else:
 	import Tkinter as tk
@@ -169,7 +169,7 @@ def Main():
 	if response == "y" or response == 'yes':
 		print("yayyy")
 	elif response == 'n' or response == 'no':
-		if (version > (3,0)):
+		if version >= 3:
 			correct_number = input("terribly sorry. What was the correct number?: ")
 		else:
 			correct_number = raw_input("terribly sorry. What was the correct number?: ")
