@@ -1,7 +1,7 @@
 from __future__ import print_function # this is for python 2.6 <-> 3.x compatibility
+import sys
 import os, struct
 import numpy as np
-import tkinter as tk
 import matplotlib
 from PIL import Image, ImageDraw
 from sklearn.multiclass import OneVsRestClassifier
@@ -9,6 +9,12 @@ from sklearn.svm import LinearSVC
 from sklearn.metrics import accuracy_score
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning) 
+
+version = sys.version_info
+if (version > (3,0)):
+	import tkinter as tk
+else:
+	import Tkinter as tk
 
 global_matrix = np.zeros([1, 900])
 
@@ -155,11 +161,18 @@ def Main():
 	#np.savetxt('self_training_y.csv', y, delimiter=',')
 	predict_number = OneVsRestClassifier(LinearSVC(random_state=0)).fit(X,y).predict(final)
 	print("You drew the number:", int(predict_number[0]))
-	response = input("Was I right? (y/n): ")
+	if (version > (3,0)):
+		response = input("Was I right? (y/n): ")
+	else:
+		response = raw_input("Was I right? (y/n): ")
+
 	if response == "y" or response == 'yes':
 		print("yayyy")
 	elif response == 'n' or response == 'no':
-		correct_number = input("terribly sorry. What was the correct number?: ")
+		if (version > (3,0)):
+			correct_number = input("terribly sorry. What was the correct number?: ")
+		else:
+			correct_number = raw_input("terribly sorry. What was the correct number?: ")
 		train(int(correct_number), final, X, y)
 		print("Thanks! We will try to get the correct answer next time :)")
 
