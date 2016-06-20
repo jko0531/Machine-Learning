@@ -161,7 +161,7 @@ def Main():
 	#np.savetxt('self_training_y.csv', y, delimiter=',')
 	predict_number = OneVsRestClassifier(LinearSVC(random_state=0)).fit(X,y).predict(final)
 	print("You drew the number:", int(predict_number[0]))
-	if (version > (3,0)):
+	if version >= 3:
 		response = input("Was I right? (y/n): ")
 	else:
 		response = raw_input("Was I right? (y/n): ")
