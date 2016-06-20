@@ -149,10 +149,10 @@ def Main():
 				final[i][j] = 0
 	final = final.reshape(1, 30*30)
 
-	global_matrix = np.delete(global_matrix, 0, 0)
-	directory = 'data'
-	X_test, y_test = parseData('testing', directory)
-	X_train, y_train = parseData('training', directory)
+	#global_matrix = np.delete(global_matrix, 0, 0)
+	#directory = 'data'
+	#X_test, y_test = parseData('testing', directory)
+	#X_train, y_train = parseData('training', directory)
 
 	#np.savetxt('self_training.csv', global_matrix, delimiter=',')
 	X = np.genfromtxt('data/self_training_X.csv', delimiter=',')
