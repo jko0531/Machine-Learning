@@ -260,7 +260,7 @@ def FeatureSelection(maxdeltas, maxlags, fout, cut, start_test, path_datasets, s
 			X_train, y_train, X_test, y_test  = prepareData(finance, start_test)
 			accuracy = performClassification(X_train, y_train, X_test, y_test, method, parameters, fout, savemodel)
 			#accuracy = performCV(X_train, y_train, folds, method, parameters, fout, savemodel)
-			print("Mean Accuracy for (delta = ", max(delta), "): ", accuracy, sep='')
+			print("Mean Accuracy for (delta = ", max(delta), "): ", accuracy)
 			print('')
 			x.append(max(delta))
 			y.append(accuracy)
@@ -277,9 +277,9 @@ def Main():
 	dataset = compileStocks(fout, '2000-5-5', '2014-5-5')
 	delta = 5
 	FeatureSelection(delta,2,fout, '2006-1-19', test_data_start, dataset, False, 'RF', 10, [0,1])
-	FeatureSelection(delta,2,fout, '2006-1-19', test_data_start, dataset, False, 'ADA', 10, [0,1])
-	FeatureSelection(delta,2,fout, '2006-1-19', test_data_start, dataset, False, 'KNN', 10, [0,1])
-	FeatureSelection(delta,2,fout, '2006-1-19', test_data_start, dataset, False, 'SVM', 10, [0,1])
+	#FeatureSelection(delta,2,fout, '2006-1-19', test_data_start, dataset, False, 'ADA', 10, [0,1])
+	#FeatureSelection(delta,2,fout, '2006-1-19', test_data_start, dataset, False, 'KNN', 10, [0,1])
+	#FeatureSelection(delta,2,fout, '2006-1-19', test_data_start, dataset, False, 'SVM', 10, [0,1])
 	plt.legend()
 	plt.show()
 if __name__ == '__main__':
