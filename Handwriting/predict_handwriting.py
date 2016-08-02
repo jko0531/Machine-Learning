@@ -5,8 +5,8 @@ import os, struct
 import numpy as np
 #import matplotlib
 from PIL import Image, ImageDraw
-#from sklearn.multiclass import OneVsRestClassifier
-#from sklearn.svm import LinearSVC
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.svm import LinearSVC
 #from sklearn.metrics import accuracy_score
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning) 
@@ -160,9 +160,9 @@ def Main():
 	y = np.genfromtxt('data/self_training_y.csv', delimiter=',')
 
 	#np.savetxt('self_training_y.csv', y, delimiter=',')
-	predict_number = NeuralNetwork(X,y).fit(X,y,final) - 1
+	#predict_number = NeuralNetwork(X,y).fit(X,y,final) - 1
 
-	#predict_number = OneVsRestClassifier(LinearSVC(random_state=0)).fit(X,y).predict(final)
+	predict_number = OneVsRestClassifier(LinearSVC(random_state=0)).fit(X,y).predict(final)
 	print("You drew the number:", int(predict_number[0]))
 	if version >= 3:
 		response = input("Was I right? (y/n): ")
